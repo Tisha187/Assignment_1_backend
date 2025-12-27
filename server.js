@@ -1,12 +1,9 @@
 import express from "express";
 import cors from "cors";
-import serverless from "serverless-http";
 import connectDB from "./config/db.js";
 import inventoryRoutes from "./routes/inventoryRoutes.js";
 import dotenv from "dotenv";
 dotenv.config();
-
-
 const app = express();
 const PORT = 5000;
 
@@ -25,5 +22,6 @@ app.get("/", (req, res) => {
   res.send("Inventory API running");
 });
 
-// export for vercel
-export default serverless(app);
+app.listen(PORT, () => {
+  console.log(` Server running on http://localhost:${PORT}`);
+});
